@@ -1,0 +1,32 @@
+services:
+  corrientes:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ucp
+      POSTGRES_USER: ucp_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Falta definir POSTGRES_PASSWORD}
+    volumes:
+      - datos_corrientes:/var/lib/postgresql/data
+
+  formosa:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ucp
+      POSTGRES_USER: ucp_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Falta definir POSTGRES_PASSWORD}
+    volumes:
+      - datos_formosa:/var/lib/postgresql/data
+
+  posadas:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ucp
+      POSTGRES_USER: ucp_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Falta definir POSTGRES_PASSWORD}
+    volumes:
+      - datos_posadas:/var/lib/postgresql/data
+
+volumes:
+  datos_corrientes:
+  datos_formosa:
+  datos_posadas:
