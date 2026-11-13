@@ -1,3 +1,5 @@
+-- Conectamos desde Corrientes las tablas de Formosa y Posadas usando psql.
+-- Los mapeos indican con qué usuario remoto se conecta ucp_admin.
 -- Leo la contraseña del entorno del contenedor.
 -- No hace falta escribirla en este archivo.
 \getenv clave_remota POSTGRES_PASSWORD
@@ -21,6 +23,7 @@ OPTIONS (
 );
 
 -- Creo referencias a las tablas de Formosa.
+-- Se importa la definición de las tablas, no sus filas: los datos siguen en el nodo remoto.
 IMPORT FOREIGN SCHEMA public
 LIMIT TO (estudiante, comision, inscripcion)
 FROM SERVER servidor_formosa

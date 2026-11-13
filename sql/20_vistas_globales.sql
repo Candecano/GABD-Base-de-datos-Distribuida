@@ -1,3 +1,6 @@
+-- Creamos en Corrientes una vista conjunta de los tres fragmentos, sin copiar sus datos.
+-- UNION ALL conserva todas las filas; la separación por sede evita mezclar los fragmentos.
+-- Al consultar se accede a los nodos remotos: si uno falla, la consulta puede terminar con error.
 BEGIN;
 
 -- Reúno los estudiantes de las tres sedes.

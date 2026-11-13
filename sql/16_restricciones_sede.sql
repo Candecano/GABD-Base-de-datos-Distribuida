@@ -1,3 +1,6 @@
+-- Aplicamos la fragmentación horizontal: cada nodo acepta filas de su propia sede.
+-- Al ejecutar con psql hay que pasar codigo_sede con COR, FOR o POS según el nodo.
+-- Los CHECK también revisan las filas existentes; las tres restricciones se confirman juntas.
 BEGIN;
 
 -- Limito los estudiantes al fragmento de esta sede.

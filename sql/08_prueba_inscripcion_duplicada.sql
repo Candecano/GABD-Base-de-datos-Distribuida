@@ -1,3 +1,6 @@
+-- Ejecutamos esta prueba en Corrientes después del alta del archivo 07.
+-- Aunque elegimos otra comisión, esperamos un error del índice inscripcion_activa_por_materia.
+-- La transacción se revierte: si el cliente se detiene ante el error, debe cerrar la transacción.
 -- Debe rechazarse porque la estudiante ya tiene una
 -- inscripción activa en esta materia, sede y período
 BEGIN;

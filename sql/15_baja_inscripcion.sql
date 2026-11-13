@@ -1,3 +1,6 @@
+-- Probamos la baja lógica en Corrientes después de pasar la inscripción a la comisión B.
+-- No borramos la fila: al cancelarla conserva el historial y deja de ocupar la unicidad de activas.
+-- RETURNING muestra las filas afectadas y COMMIT confirma la baja.
 BEGIN;
 
 -- Cancelo la inscripción y conservo su registro.

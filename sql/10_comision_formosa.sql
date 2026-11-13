@@ -1,3 +1,5 @@
+-- Preparamos en Formosa la comisión que debe existir antes de importar el Excel.
+-- Requiere los catálogos cargados; si el código ya existe, no se vuelve a insertar.
 -- Comisión de prueba para las solicitudes del Excel de Formosa.
 INSERT INTO comision (
     codigo_comision,

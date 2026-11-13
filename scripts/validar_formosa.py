@@ -1,3 +1,5 @@
+# Revisamos las preinscripciones del Excel de Formosa sin conectarnos a PostgreSQL.
+# Generamos JSON con solicitudes válidas y pendientes para la posterior carga SQL.
 from pathlib import Path
 from datetime import date, datetime
 from collections import Counter
@@ -29,6 +31,7 @@ def normalizar(valor):
     return " ".join(sin_acentos.upper().split())
 
 
+# Coordinamos la lectura, la revisión de cada fila y la escritura de los resultados.
 def main():
     # leo el archivo sin modificar el Excel original
     libro = load_workbook(ARCHIVO, read_only=True, data_only=False)
@@ -46,6 +49,7 @@ def main():
             texto(celda.value) for celda in hoja[6][:9]
         ]
 
+        # Si cambia el formato del Excel, detenemos la lectura para no confundir las columnas.
         if encabezados != encabezados_esperados:
             raise ValueError(
                 "Los encabezados de la fila 6 no coinciden con lo esperado."
@@ -61,6 +65,7 @@ def main():
                 break
             filas.append((numero, valores))
 
+        # Contamos primero todos los identificadores: cada aparición de uno repetido queda pendiente.
         solicitudes = Counter(
             texto(valores[0]) for _, valores in filas
         )
@@ -114,6 +119,7 @@ def main():
             if comision != "A":
                 errores.append("Comisión no prevista para esta prueba")
 
+            # Juntamos los motivos y dejamos la fila para revisión, sin frenar las demás.
             if errores:
                 pendientes.append({
                     "fila_excel": numero,
@@ -132,6 +138,8 @@ def main():
                 fecha.date() if isinstance(fecha, datetime) else fecha
             )
 
+            # Armamos los campos que espera el importador SQL, con fecha en formato año-mes-día.
+            # La base vuelve a validar referencias y controla lo que ya se importó en cargas anteriores.
             validas.append({
                 "solicitud": solicitud,
                 "legajo": legajo,
@@ -169,6 +177,7 @@ def main():
         print("Resultados guardados en la carpeta resultados.")
         print("Todavía no se realizaron cambios en PostgreSQL.")
 
+    # Cerramos el libro incluso si la lectura o la escritura termina con un error.
     finally:
         libro.close()
 

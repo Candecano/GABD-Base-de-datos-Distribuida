@@ -1,3 +1,6 @@
+-- Ejecutamos en Corrientes después de aplicar el archivo 16 con codigo_sede=COR.
+-- El rechazo esperado demuestra que el nodo no acepta filas de otro fragmento.
+-- Si el cliente se detiene ante el error, hay que cerrar la transacción sin confirmarla.
 BEGIN;
 
 -- Intento guardar un estudiante de Formosa en Corrientes.

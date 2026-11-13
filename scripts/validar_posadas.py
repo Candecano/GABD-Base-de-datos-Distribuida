@@ -1,3 +1,5 @@
+# Revisamos los reportes TXT de Posadas sin conectarnos a PostgreSQL.
+# Separamos los casos válidos de los pendientes y generamos JSON para la carga SQL.
 from pathlib import Path
 from datetime import date
 from collections import Counter
@@ -6,6 +8,7 @@ import re
 import unicodedata
 
 
+# Buscamos la entrada y la salida desde la carpeta del proyecto.
 RAIZ = Path(__file__).resolve().parent.parent
 ARCHIVO = RAIZ / "datos" / "reportes_posadas.txt"
 SALIDA = RAIZ / "resultados"
@@ -29,7 +32,9 @@ def extraer_unico(patron, texto):
     return encontrados.pop() if len(encontrados) == 1 else None
 
 
+# Coordinamos la extracción de los reportes, sus validaciones y los resultados.
 def main():
+    # utf-8-sig admite también un TXT que tenga una marca de codificación al inicio.
     contenido = ARCHIVO.read_text(encoding="utf-8-sig")
 
     # separo los reportes por sus encabezados
@@ -42,6 +47,7 @@ def main():
         extraer_unico(r"^(POS-REP-\d+)\b", bloque)
         for bloque in bloques
     ]
+    # Detectamos identificadores repetidos dentro de este archivo antes de procesar cada reporte.
     repeticiones = Counter(codigos)
 
     validas = []
@@ -121,18 +127,21 @@ def main():
             flags=re.IGNORECASE
         )
 
+        # Convertimos la fecha escrita en el encabezado y comprobamos que sea una fecha real.
         if fecha_encontrada:
             dia, mes, anio = fecha_encontrada.groups()
             try:
                 fecha_solicitud = date(
                     int(anio), meses[mes.lower()], int(dia)
                 ).isoformat()
+            # Un mes desconocido o una fecha imposible deja el reporte pendiente.
             except (ValueError, KeyError):
                 pass
 
         if not fecha_solicitud:
             errores.append("Fecha del reporte inválida o ausente")
 
+        # Conservamos los motivos y el texto original para poder revisar el reporte.
         if errores:
             pendientes.append({
                 "solicitud": codigo,
@@ -145,6 +154,7 @@ def main():
             )
             continue
 
+        # Preparamos los campos que espera SQL; el importador controla las solicitudes de cargas anteriores.
         validas.append({
             "solicitud": codigo,
             "legajo": legajo.upper(),
@@ -163,6 +173,7 @@ def main():
             f"{legajo.upper()} | {nombre} {apellido}"
         )
 
+    # Guardamos válidas y pendientes por separado; esta etapa no hace altas en la base.
     SALIDA.mkdir(exist_ok=True)
 
     for nombre_archivo, datos in [

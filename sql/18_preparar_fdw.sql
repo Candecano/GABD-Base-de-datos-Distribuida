@@ -1,3 +1,6 @@
+-- Preparamos Corrientes para consultar los fragmentos de Formosa y Posadas mediante FDW.
+-- Los nombres de host son los servicios de Compose; el límite de conexión es de 5 segundos.
+-- Esto registra los servidores, pero todavía faltan las credenciales y las tablas remotas.
 BEGIN;
 
 -- Habilito el acceso a otros servidores PostgreSQL.

@@ -1,3 +1,5 @@
+-- Cargamos las sedes y la materia inicial en cada nodo dentro de una transacción.
+-- ON CONFLICT evita repetir esos códigos al volver a ejecutar la carga; no actualiza sus datos.
 BEGIN;
 
 -- Las tres sedes comparten los mismos códigos.

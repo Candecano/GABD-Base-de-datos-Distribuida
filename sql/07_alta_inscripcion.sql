@@ -1,3 +1,6 @@
+-- Damos de alta la inscripción de prueba en Corrientes.
+-- La base valida las referencias y que no haya otra activa para esa materia, sede y período.
+-- RETURNING muestra el registro creado, incluidos los valores que completa PostgreSQL.
 INSERT INTO inscripcion (
     legajo,
     codigo_comision,

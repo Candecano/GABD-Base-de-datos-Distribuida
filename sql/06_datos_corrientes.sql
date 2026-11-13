@@ -1,3 +1,5 @@
+-- Cargamos la estudiante y las dos comisiones para probar el ABM en Corrientes.
+-- Se confirma todo junto; si un código ya existe, se conserva el registro anterior.
 BEGIN;
 
 INSERT INTO estudiante (legajo, nombre, apellido, codigo_sede)

@@ -1,3 +1,5 @@
+-- Importamos en Formosa el JSON preparado por el validador del Excel.
+-- La carga y su registro se confirman juntos; una excepción revierte todo el lote.
 BEGIN;
 
 -- Evito que dos importaciones modifiquen estas tablas al mismo tiempo.
@@ -16,6 +18,7 @@ DECLARE
     cantidad_omitidas integer := 0;
 BEGIN
     -- Leo el archivo intermedio que copiamos al contenedor.
+    -- pg_read_file lee dentro del contenedor, no desde la carpeta de la computadora.
     solicitudes := pg_read_file('/tmp/formosa_validas.json')::jsonb;
 
     IF jsonb_typeof(solicitudes) IS DISTINCT FROM 'array' THEN
@@ -48,6 +51,7 @@ BEGIN
                     solicitud->>'solicitud';
             END IF;
 
+            -- Solo omitimos una solicitud ya registrada si sus datos coinciden exactamente.
             cantidad_omitidas := cantidad_omitidas + 1;
             CONTINUE;
         END IF;
@@ -133,6 +137,7 @@ BEGIN
         cantidad_importadas := cantidad_importadas + 1;
     END LOOP;
 
+    -- El resumen distingue las altas nuevas de las solicitudes idénticas que ya estaban cargadas.
     RAISE NOTICE 'Solicitudes nuevas: %. Ya procesadas: %.',
         cantidad_importadas, cantidad_omitidas;
 END;

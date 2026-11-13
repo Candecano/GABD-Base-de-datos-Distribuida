@@ -1,6 +1,11 @@
+# Simulamos las tres sedes con bases PostgreSQL 17 separadas.
+# Los servicios se encuentran por su nombre dentro de la red de Compose.
+# La contraseña se toma del entorno; Compose exige que esté definida.
 services:
+  # Corrientes guarda su fragmento local y publica el catálogo de materias.
   corrientes:
     image: postgres:17
+    # Habilitamos el registro de cambios que necesita la replicación lógica.
     command: ["postgres", "-c", "wal_level=logical"]
     environment:
       POSTGRES_DB: ucp
@@ -9,6 +14,7 @@ services:
     volumes:
       - datos_corrientes:/var/lib/postgresql/data
 
+  # Formosa guarda su fragmento y recibe los cambios del catálogo por suscripción.
   formosa:
     image: postgres:17
     environment:
@@ -18,6 +24,7 @@ services:
     volumes:
       - datos_formosa:/var/lib/postgresql/data
 
+  # Posadas guarda su fragmento y recibe los cambios del catálogo por suscripción.
   posadas:
     image: postgres:17
     environment:
@@ -27,6 +34,8 @@ services:
     volumes:
       - datos_posadas:/var/lib/postgresql/data
 
+# Cada sede usa un volumen propio: los datos sobreviven al recrear el contenedor.
+# Estos volúmenes conservan datos, pero no reemplazan una copia de seguridad.
 volumes:
   datos_corrientes:
   datos_formosa:
