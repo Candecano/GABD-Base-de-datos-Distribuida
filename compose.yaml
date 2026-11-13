@@ -1,6 +1,7 @@
 services:
   corrientes:
     image: postgres:17
+    command: ["postgres", "-c", "wal_level=logical"]
     environment:
       POSTGRES_DB: ucp
       POSTGRES_USER: ucp_admin

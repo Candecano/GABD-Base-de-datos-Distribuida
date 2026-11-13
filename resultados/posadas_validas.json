@@ -1,0 +1,38 @@
+[
+  {
+    "solicitud": "POS-REP-001",
+    "legajo": "POS-001",
+    "nombre": "Ana",
+    "apellido": "López",
+    "codigo_sede": "POS",
+    "codigo_materia": "GABD",
+    "periodo": "2026-2",
+    "codigo_comision": "POS-GABD-2026-2-A",
+    "fecha_solicitud": "2026-11-10",
+    "texto_original": "Reporte POS-REP-001 — 10 de noviembre de 2026\nDurante una interrupción del acceso al sistema local, Ana López, legajo POS-001, pidió inscribirse en Gestión Avanzada de Bases de Datos, comisión A de Posadas, para el período 2026-2. Se anotó el pedido para cargarlo cuando se restablezca el acceso."
+  },
+  {
+    "solicitud": "POS-REP-002",
+    "legajo": "POS-002",
+    "nombre": "Diego",
+    "apellido": "Fernández",
+    "codigo_sede": "POS",
+    "codigo_materia": "GABD",
+    "periodo": "2026-2",
+    "codigo_comision": "POS-GABD-2026-2-A",
+    "fecha_solicitud": "2026-11-10",
+    "texto_original": "Reporte POS-REP-002 — 10 de noviembre de 2026\nSe recibió el pedido de inscripción de Diego Fernández. Informó el legajo POS-002 y solicitó cursar GABD en Posadas, comisión A, durante el período 2026-2. La solicitud quedó registrada en este reporte porque el alumno no podía acceder al sistema de alumnos."
+  },
+  {
+    "solicitud": "POS-REP-003",
+    "legajo": "POS-003",
+    "nombre": "Camila",
+    "apellido": "Ruiz",
+    "codigo_sede": "POS",
+    "codigo_materia": "GABD",
+    "periodo": "2026-2",
+    "codigo_comision": "POS-GABD-2026-2-A",
+    "fecha_solicitud": "2026-11-11",
+    "texto_original": "Reporte POS-REP-003 — 11 de noviembre de 2026\nCamila Ruiz, cuyo legajo es POS-003, se acercó para solicitar la inscripción en la comisión A de Gestión Avanzada de Bases de Datos de la sede Posadas. El pedido corresponde al período 2026-2 y sigue pendiente de carga."
+  }
+]

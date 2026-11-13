@@ -1,0 +1,50 @@
+[
+  {
+    "solicitud": "FOR-SOL-001",
+    "legajo": "FOR-001",
+    "nombre": "Martina",
+    "apellido": "Gómez",
+    "codigo_sede": "FOR",
+    "codigo_materia": "GABD",
+    "periodo": "2026-2",
+    "codigo_comision": "FOR-GABD-2026-2-A",
+    "fecha_solicitud": "2026-11-10",
+    "observaciones": "Solicita inscripción."
+  },
+  {
+    "solicitud": "FOR-SOL-002",
+    "legajo": "FOR-002",
+    "nombre": "Tomás",
+    "apellido": "Benítez",
+    "codigo_sede": "FOR",
+    "codigo_materia": "GABD",
+    "periodo": "2026-2",
+    "codigo_comision": "FOR-GABD-2026-2-A",
+    "fecha_solicitud": "2026-11-10",
+    "observaciones": "Materia escrita con su nombre completo."
+  },
+  {
+    "solicitud": "FOR-SOL-003",
+    "legajo": "FOR-003",
+    "nombre": "Sofía",
+    "apellido": "Pereyra",
+    "codigo_sede": "FOR",
+    "codigo_materia": "GABD",
+    "periodo": "2026-2",
+    "codigo_comision": "FOR-GABD-2026-2-A",
+    "fecha_solicitud": "2026-11-11",
+    "observaciones": "Código escrito en minúsculas."
+  },
+  {
+    "solicitud": "FOR-SOL-004",
+    "legajo": "FOR-004",
+    "nombre": "Nicolás",
+    "apellido": "Acosta",
+    "codigo_sede": "FOR",
+    "codigo_materia": "GABD",
+    "periodo": "2026-2",
+    "codigo_comision": "FOR-GABD-2026-2-A",
+    "fecha_solicitud": "2026-11-11",
+    "observaciones": "Solicita inscripción."
+  }
+]
